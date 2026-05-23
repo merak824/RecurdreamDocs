@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recurdream 文档后台</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-layout="three">
+    <div class="app">
+      <main class="workspace">
+        <header class="topbar">
+          <div class="topbar-title">
+            <div class="brand-mark compact"></div>
+            <div>
+              <h1 id="viewTitle">文档工作台</h1>
+              <p id="viewDesc">面向客户手册的编辑、排序和预览。</p>
+            </div>
+          </div>
+          <div class="actions">
+            <span id="saveIndicator" class="status-pill saved">已保存</span>
+            <div class="segmented layout-switch" aria-label="视图切换">
+              <button class="active" data-layout="three" type="button">三栏</button>
+              <button data-layout="editor" type="button">编辑</button>
+              <button data-layout="preview" type="button">预览</button>
+            </div>
+            <nav class="tabs top-tabs" aria-label="后台功能">
+              <button class="tab active" data-view="workspace" type="button">文档</button>
+              <button class="tab" data-view="images" type="button">图片</button>
+              <button class="tab" data-view="snippets" type="button">代码</button>
+            </nav>
+            <a id="openSiteLink" class="ghost-link" href="http://127.0.0.1:5174/" target="_blank" rel="noopener">打开前台</a>
+            <button id="deployDocsBtn" class="primary" type="button">发布前台</button>
+            <button id="refreshBtn" type="button">刷新</button>
+          </div>
+        </header>
+
+        <section id="workspaceView" class="view active">
+          <div class="doc-workbench">
+            <section class="panel nav-panel">
+              <div class="panel-head stacked-head">
+                <div class="head-copy">
+                  <strong>导航</strong>
+                  <span id="navSummary" class="muted">0 个页面</span>
+                </div>
+                <input id="navSearch" class="nav-search" type="search" placeholder="搜索标题或路径" />
+                <div class="inline-tools">
+                  <button id="addNavGroupBtn" type="button">添加一级</button>
+                  <button id="saveNavBtn" class="primary" type="button">保存导航</button>
+                </div>
+              </div>
+              <div id="navEditor" class="nav-editor"></div>
+            </section>
+
+            <section class="panel editor-panel">
+              <div class="editor-head doc-head">
+                <div class="doc-title-box">
+                  <input id="docTitleInput" class="title-input" type="text" placeholder="页面标题" />
+                  <div class="doc-meta">
+                    <span id="currentPagePath">未选择页面</span>
+                    <span id="docStats">0 字</span>
+                  </div>
+                </div>
+                <button id="savePageBtn" class="primary" type="button">保存页面</button>
+              </div>
+              <div class="format-bar" aria-label="编辑工具栏">
+                <div class="tool-group" aria-label="标题">
+                  <select id="headingFormat" class="tool-select heading-select" title="标题" aria-label="标题">
+                    <option value="">正文</option>
+                    <option value="h1">H1 一级标题</option>
+                    <option value="h2">H2 二级标题</option>
+                    <option value="h3">H3 三级标题</option>
+                  </select>
+                </div>
+                <div class="tool-group" aria-label="文本样式">
+                  <button class="tool-btn text-tool strong-tool" data-format="bold" type="button" title="加粗" aria-label="加粗">B</button>
+                  <button class="tool-btn text-tool italic-tool" data-format="italic" type="button" title="斜体" aria-label="斜体">I</button>
+                  <button class="tool-btn text-tool" data-format="inlinecode" type="button" title="行内代码" aria-label="行内代码">`</button>
+                  <button class="tool-btn" data-format="link" type="button" title="链接" aria-label="链接">↗</button>
+                </div>
+                <div class="tool-group color-tools" aria-label="颜色标记">
+                  <select id="colorFormat" class="tool-select color-select" title="颜色标记" aria-label="颜色标记">
+                    <option value="">颜色</option>
+                    <option value="brand">重点紫</option>
+                    <option value="info">信息蓝</option>
+                    <option value="success">成功绿</option>
+                    <option value="warning">警告黄</option>
+                    <option value="danger">危险红</option>
+                  </select>
+                </div>
+                <div class="tool-group" aria-label="块格式">
+                  <button class="tool-btn" data-format="quote" type="button" title="引用" aria-label="引用">❝</button>
+                  <button class="tool-btn" data-format="list" type="button" title="无序列表" aria-label="无序列表">•</button>
+                  <button class="tool-btn" data-format="number" type="button" title="有序列表" aria-label="有序列表">1.</button>
+                  <button class="tool-btn" data-format="task" type="button" title="待办项" aria-label="待办项">☐</button>
+                  <button class="tool-btn" data-format="table" type="button" title="表格" aria-label="表格">▦</button>
+                  <button class="tool-btn" data-format="codeblock" type="button" title="代码块" aria-label="代码块">{}</button>
+                  <button class="tool-btn" data-format="tip" type="button" title="提示块" aria-label="提示块">i</button>
+                  <button class="tool-btn" data-format="warning" type="button" title="警告块" aria-label="警告块">!</button>
+                  <button class="tool-btn" data-format="divider" type="button" title="分割线" aria-label="分割线">—</button>
+                </div>
+                <div class="tool-group" aria-label="插入">
+                  <button id="insertImageBtn" class="tool-btn" type="button" title="插入图片" aria-label="插入图片">▧</button>
+                </div>
+                <input id="inlineImageFile" type="file" accept="image/*" hidden />
+              </div>
+              <textarea id="pageEditor" spellcheck="false" placeholder="选择左侧二级导航后开始编辑 Markdown"></textarea>
+            </section>
+
+            <section class="panel preview-panel">
+              <div class="panel-head preview-head">
+                <strong>预览</strong>
+              </div>
+              <div class="outline-panel">
+                <div class="outline-title">
+                  <strong>文章大纲</strong>
+                  <span id="outlineCount" class="muted">0 个标题</span>
+                </div>
+                <div id="outlineList" class="outline-list"></div>
+              </div>
+              <article id="preview" class="preview vp-doc"></article>
+            </section>
+          </div>
+        </section>
+
+        <section id="imagesView" class="view">
+          <div class="media-layout">
+            <section class="panel">
+              <div class="panel-head"><strong>上传/替换图片</strong></div>
+              <label class="field">
+                <span>保存路径</span>
+                <input id="imagePath" type="text" placeholder="clients/tavo-settings.png" />
+              </label>
+              <label class="file-drop">
+                <input id="imageFile" type="file" accept="image/*" />
+                <span>选择截图或图片</span>
+              </label>
+              <button id="uploadImageBtn" class="primary upload-button" type="button">上传图片</button>
+              <p class="muted block-note">文档引用路径为 <code>/images/保存路径</code>。</p>
+            </section>
+            <section class="panel">
+              <div class="panel-head"><strong>图片列表</strong></div>
+              <div id="imageGrid" class="image-grid"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="snippetsView" class="view">
+          <div class="split snippets-split">
+            <section class="panel list-panel">
+              <div class="panel-head">
+                <strong>代码片段</strong>
+                <input id="snippetSearch" type="search" placeholder="搜索代码" />
+              </div>
+              <div id="snippetList" class="list"></div>
+            </section>
+            <section class="panel editor-panel">
+              <div class="editor-head">
+                <div>
+                  <strong id="currentSnippetTitle">选择一个代码片段</strong>
+                  <span id="currentSnippetPath"></span>
+                </div>
+                <button id="saveSnippetBtn" class="primary" type="button">保存代码</button>
+              </div>
+              <textarea id="snippetEditor" spellcheck="false" placeholder="选择左侧代码片段后开始编辑"></textarea>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

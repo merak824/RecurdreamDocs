@@ -1,4 +1,29 @@
 import { defineConfig } from 'vitepress'
+import { readFileSync } from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+type DocsNavItem = {
+  text: string
+  link: string
+}
+
+type DocsNavGroup = {
+  text: string
+  items: DocsNavItem[]
+}
+
+const rootDir = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+const docsNavigation = JSON.parse(
+  readFileSync(resolve(rootDir, 'navigation.json'), 'utf8')
+) as DocsNavGroup[]
+
+const topNavigation = docsNavigation
+  .map((group) => ({
+    text: group.text,
+    link: group.items[0]?.link || '/'
+  }))
+  .filter((item) => item.link)
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -6,6 +31,10 @@ export default defineConfig({
   description: 'Recurdream AI API 接入与使用指南',
   cleanUrls: true,
   lastUpdated: true,
+  srcExclude: ['README_CN.md', 'EDITOR_GUIDE_CN.md', 'admin/**', 'snippets/**'],
+  markdown: {
+    lineNumbers: true
+  },
   head: [
     ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'theme-color', content: '#8b5cf6' }],
@@ -16,47 +45,8 @@ export default defineConfig({
   themeConfig: {
     logo: '/favicon.svg',
     siteTitle: 'Recurdream Docs',
-    nav: [
-      { text: '使用手册', link: '/' },
-      { text: '客户端接入', link: '/clients/' },
-      { text: '充值计费', link: '/billing/' }
-    ],
-    sidebar: [
-      {
-        text: '开始使用',
-        items: [
-          { text: '使用手册', link: '/' },
-          { text: '快速开始', link: '/guide/getting-started' },
-          { text: '创建 API Key', link: '/guide/api-key' },
-          { text: 'API 端点与模型', link: '/guide/endpoints' }
-        ]
-      },
-      {
-        text: '客户端接入',
-        items: [
-          { text: '接入概览', link: '/clients/' },
-          { text: 'Tavo', link: '/clients/tavo' },
-          { text: 'Cherry Studio', link: '/clients/cherry-studio' },
-          { text: 'ChatBox', link: '/clients/chatbox' },
-          { text: 'NextChat', link: '/clients/nextchat' },
-          { text: 'Claude Code', link: '/clients/claude-code' },
-          { text: 'Gemini CLI', link: '/clients/gemini-cli' }
-        ]
-      },
-      {
-        text: '充值与计费',
-        items: [
-          { text: '充值说明', link: '/billing/' },
-          { text: '余额与用量', link: '/billing/usage' }
-        ]
-      },
-      {
-        text: '帮助',
-        items: [
-          { text: '常见问题', link: '/faq/' }
-        ]
-      }
-    ],
+    nav: topNavigation,
+    sidebar: docsNavigation,
     outline: {
       level: [2, 3],
       label: '本页目录'
@@ -83,14 +73,14 @@ export default defineConfig({
       }
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/merak824/RecurdreamApi' }
+      { icon: 'github', link: 'https://github.com/merak824/RecurdreamDocs' }
     ],
     footer: {
       message: 'Recurdream 官方使用文档',
       copyright: 'Copyright © 2026 Recurdream'
     },
     editLink: {
-      pattern: 'https://github.com/merak824/RecurdreamApi/edit/main/docs-site/:path',
+      pattern: 'https://github.com/merak824/RecurdreamDocs/edit/main/:path',
       text: '在 GitHub 上编辑此页'
     },
     lastUpdated: {

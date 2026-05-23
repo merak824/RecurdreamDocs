@@ -8,7 +8,7 @@ Cherry Studio 支持自定义模型服务，推荐按 OpenAI 兼容方式接入 
 | --- | --- |
 | Provider | OpenAI Compatible / 自定义 OpenAI |
 | API Key | Recurdream API Key |
-| API Host | `https://recurdream.com/v1` |
+| API Host | `https://api.recurdream.com/v1` |
 | Model | 后台可用模型名 |
 
 ## 操作步骤

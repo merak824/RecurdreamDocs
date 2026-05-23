@@ -4,7 +4,7 @@
 
 ## 1. 注册并登录
 
-打开 `https://recurdream.com`，进入登录或注册页面。
+打开 `https://api.recurdream.com`，进入登录或注册页面。
 
 如果站点开启了邀请码、邮箱验证或第三方登录，请按页面提示完成。注册后进入控制台，可以看到余额、API Key、用量记录等菜单。
 
@@ -35,12 +35,12 @@
 
 | 客户端类型 | 推荐协议 | Base URL |
 | --- | --- | --- |
-| Tavo、Cherry Studio、ChatBox、NextChat | OpenAI 兼容 | `https://recurdream.com` |
-| Claude Code、Claude 兼容工具 | Anthropic/Claude 兼容 | `https://recurdream.com` |
-| Gemini CLI、Gemini 兼容工具 | Gemini 兼容 | `https://recurdream.com` |
+| Tavo、Cherry Studio、ChatBox、NextChat | OpenAI 兼容 | `https://api.recurdream.com` |
+| Claude Code、Claude 兼容工具 | Anthropic/Claude 兼容 | `https://api.recurdream.com` |
+| Gemini CLI、Gemini 兼容工具 | Gemini 兼容 | `https://api.recurdream.com` |
 
 ::: warning
-如果某个客户端要求 Base URL 必须包含 `/v1`，可以填写 `https://recurdream.com/v1`。如果客户端会自动拼接 `/v1/chat/completions`，则填写 `https://recurdream.com` 即可。
+如果某个客户端要求 Base URL 必须包含 `/v1`，可以填写 `https://api.recurdream.com/v1`。如果客户端会自动拼接 `/v1/chat/completions`，则填写 `https://api.recurdream.com` 即可。
 :::
 
 ## 5. 测试一次请求
@@ -48,7 +48,7 @@
 OpenAI 兼容客户端可用下面的方式测试：
 
 ```bash
-curl https://recurdream.com/v1/chat/completions \
+curl https://api.recurdream.com/v1/chat/completions \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{

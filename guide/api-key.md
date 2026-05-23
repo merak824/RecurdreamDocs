@@ -4,7 +4,7 @@ API Key 是客户端访问 Recurdream 的凭证。请把它当作密码一样保
 
 ## 创建步骤
 
-1. 登录 `https://recurdream.com`
+1. 登录 `https://api.recurdream.com`
 2. 打开 **API 密钥**
 3. 点击 **创建密钥**
 4. 选择分组或模型权限

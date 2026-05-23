@@ -5,7 +5,7 @@
 | 配置项 | 填写 |
 | --- | --- |
 | API Key | 你在 Recurdream 后台创建的 Key |
-| Base URL | `https://recurdream.com` 或 `https://recurdream.com/v1` |
+| Base URL | `https://api.recurdream.com` 或 `https://api.recurdream.com/v1` |
 | 模型名 | 按后台可用模型填写 |
 
 ## 按客户端选择
@@ -36,14 +36,14 @@
 ```text
 Provider: OpenAI Compatible
 API Key: YOUR_API_KEY
-Base URL: https://recurdream.com/v1
+Base URL: https://api.recurdream.com/v1
 Model: gpt-4o-mini
 ```
 
 有些客户端会自动补 `/v1`，这时 Base URL 改成：
 
 ```text
-https://recurdream.com
+https://api.recurdream.com
 ```
 
 ## 通用排错

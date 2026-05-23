@@ -8,14 +8,14 @@ Claude Code 或 Claude/Anthropic 兼容工具可以通过 Recurdream 的 Claude 
 
 ```bash
 export ANTHROPIC_AUTH_TOKEN="YOUR_API_KEY"
-export ANTHROPIC_BASE_URL="https://recurdream.com"
+export ANTHROPIC_BASE_URL="https://api.recurdream.com"
 ```
 
 Windows PowerShell：
 
 ```powershell
 $env:ANTHROPIC_AUTH_TOKEN="YOUR_API_KEY"
-$env:ANTHROPIC_BASE_URL="https://recurdream.com"
+$env:ANTHROPIC_BASE_URL="https://api.recurdream.com"
 ```
 
 ## API 端点
@@ -23,13 +23,13 @@ $env:ANTHROPIC_BASE_URL="https://recurdream.com"
 Claude 兼容请求通常走：
 
 ```text
-https://recurdream.com/v1/messages
+https://api.recurdream.com/v1/messages
 ```
 
 模型列表：
 
 ```text
-https://recurdream.com/v1/models
+https://api.recurdream.com/v1/models
 ```
 
 ## 注意事项

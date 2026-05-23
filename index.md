@@ -8,9 +8,7 @@
 
 打开 Recurdream 主站：
 
-```text
-https://recurdream.com
-```
+[https://api.recurdream.com](https://api.recurdream.com)
 
 注册账号并登录控制台。如果站点开启了邀请码、邮箱验证或第三方登录，请按页面提示完成。
 
@@ -42,13 +40,13 @@ https://recurdream.com
 | 配置项 | 填写 |
 | --- | --- |
 | API Key | Recurdream 后台创建的 API Key |
-| Base URL | `https://recurdream.com/v1` |
+| Base URL | `https://api.recurdream.com/v1` |
 | 模型名 | 以后台可用模型为准 |
 
 如果客户端会自动拼接 `/v1/chat/completions`，Base URL 改成：
 
 ```text
-https://recurdream.com
+https://api.recurdream.com
 ```
 
 ## 常用教程
@@ -66,7 +64,7 @@ https://recurdream.com
 | --- | --- |
 | 401 Unauthorized | 检查 API Key 是否复制完整、是否已禁用 |
 | 403 Forbidden | 检查余额、Key 分组、模型权限 |
-| 404 Not Found | 在 `https://recurdream.com` 和 `https://recurdream.com/v1` 之间切换测试 |
+| 404 Not Found | 在 `https://api.recurdream.com` 和 `https://api.recurdream.com/v1` 之间切换测试 |
 | 429 Too Many Requests | 请求过快、并发过高或上游限流，稍后重试 |
 | 模型不存在 | 检查模型名和 API Key 所属分组权限 |
 

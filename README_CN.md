@@ -2,6 +2,8 @@
 
 这个目录是 `docs.recurdream.com` 的文档源码。文档内容使用 Markdown 编写，线上页面由 VitePress 构建生成。
 
+图片、截图和代码段的维护方式见 `EDITOR_GUIDE_CN.md`。
+
 ## 修改文档
 
 常用文件位置：
@@ -46,6 +48,64 @@ http://127.0.0.1:5174/
 ```ts
 { text: '套餐说明', link: '/billing/plans' }
 ```
+
+## 添加截图和图片
+
+把图片放到 `public/images/` 目录，例如：
+
+```text
+public/images/clients/tavo-settings.png
+public/images/billing/recharge-page.png
+```
+
+在 Markdown 里这样引用：
+
+```md
+![Tavo 设置页面](/images/clients/tavo-settings.png)
+```
+
+也可以给图片加说明文字：
+
+```md
+<figure>
+  <img src="/images/clients/tavo-settings.png" alt="Tavo 设置页面" />
+  <figcaption>Tavo 中填写 Base URL 和 API Key 的位置</figcaption>
+</figure>
+```
+
+图片命名建议使用英文、小写和短横线，例如 `api-key-create.png`，不要使用空格。
+
+## 添加代码段
+
+使用三个反引号包住代码，并在第一行写语言名：
+
+````md
+```bash
+curl https://api.recurdream.com/v1/models \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+````
+
+常用语言名：
+
+| 场景 | 写法 |
+| --- | --- |
+| 命令行 | `bash` |
+| Windows PowerShell | `powershell` |
+| JSON | `json` |
+| JavaScript/TypeScript | `js` / `ts` |
+| 普通文本 | `text` |
+
+如果要强调某一行，可以这样写：
+
+````md
+```json{2}
+{
+  "base_url": "https://api.recurdream.com/v1",
+  "api_key": "YOUR_API_KEY"
+}
+```
+````
 
 ## 发布到服务器
 

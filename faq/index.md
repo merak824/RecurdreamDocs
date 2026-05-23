@@ -5,13 +5,13 @@
 优先填：
 
 ```text
-https://recurdream.com/v1
+https://api.recurdream.com/v1
 ```
 
 如果客户端会自动拼接 `/v1/chat/completions`，则填：
 
 ```text
-https://recurdream.com
+https://api.recurdream.com
 ```
 
 ## API Key 放哪里
@@ -38,7 +38,7 @@ https://recurdream.com
 
 ## 404 Not Found
 
-通常是 Base URL 路径不对。把 `https://recurdream.com` 和 `https://recurdream.com/v1` 互相切换测试。
+通常是 Base URL 路径不对。把 `https://api.recurdream.com` 和 `https://api.recurdream.com/v1` 互相切换测试。
 
 ## 429 Too Many Requests
 

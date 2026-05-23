@@ -7,13 +7,13 @@ Recurdream 支持多种客户端协议。实际可用模型以控制台展示和
 推荐基础地址：
 
 ```text
-https://recurdream.com
+https://api.recurdream.com
 ```
 
 如果客户端要求填写完整 OpenAI 兼容地址，可以使用：
 
 ```text
-https://recurdream.com/v1
+https://api.recurdream.com/v1
 ```
 
 ## OpenAI 兼容端点
@@ -29,7 +29,7 @@ https://recurdream.com/v1
 示例：
 
 ```bash
-curl https://recurdream.com/v1/models \
+curl https://api.recurdream.com/v1/models \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -71,8 +71,8 @@ Gemini CLI 或 Gemini 兼容工具通常使用：
 
 | 客户端要求 | 填写 |
 | --- | --- |
-| 要求 `Base URL`，自动拼路径 | `https://recurdream.com` |
-| 要求 OpenAI `API Base` | `https://recurdream.com/v1` |
+| 要求 `Base URL`，自动拼路径 | `https://api.recurdream.com` |
+| 要求 OpenAI `API Base` | `https://api.recurdream.com/v1` |
 | 要求完整请求地址 | 按文档填写完整端点 |
 
-如果不确定，先使用 `https://recurdream.com`。如果报 404，再尝试 `https://recurdream.com/v1`。
+如果不确定，先使用 `https://api.recurdream.com`。如果报 404，再尝试 `https://api.recurdream.com/v1`。

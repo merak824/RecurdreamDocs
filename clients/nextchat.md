@@ -7,7 +7,7 @@ NextChat 支持自定义 OpenAI 接口。桌面版和自部署版本的配置入
 | 配置项 | 填写 |
 | --- | --- |
 | API Key | Recurdream API Key |
-| Endpoint / Base URL | `https://recurdream.com/v1` |
+| Endpoint / Base URL | `https://api.recurdream.com/v1` |
 | Model | 后台可用模型名 |
 
 ## 自部署环境变量
@@ -16,7 +16,7 @@ NextChat 支持自定义 OpenAI 接口。桌面版和自部署版本的配置入
 
 ```text
 OPENAI_API_KEY=YOUR_API_KEY
-BASE_URL=https://recurdream.com/v1
+BASE_URL=https://api.recurdream.com/v1
 ```
 
 不同版本变量名可能不同，请以 NextChat 当前版本配置项为准。

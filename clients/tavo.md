@@ -6,17 +6,23 @@ Tavo 是 AI 聊天软件，如果它支持自定义 OpenAI 兼容接口，就可
 
 在 Tavo 的模型服务或 API 设置里，选择类似下面的配置：
 
+<DocImage
+  src="/images/clients/tavo-settings.svg"
+  alt="Tavo 设置页面示意图"
+  caption="示意图：在 Tavo 的 OpenAI Compatible 服务里填写 Recurdream 连接信息。"
+/>
+
 | 配置项 | 填写 |
 | --- | --- |
 | 服务商 | OpenAI Compatible / 自定义 OpenAI |
 | API Key | Recurdream 后台创建的 API Key |
-| Base URL | `https://recurdream.com/v1` |
+| Base URL | `https://api.recurdream.com/v1` |
 | 模型 | 按后台可用模型填写，例如 `gpt-4o-mini` |
 
 如果 Tavo 的 Base URL 输入框说明里已经包含 `/v1/chat/completions`，则 Base URL 改成：
 
 ```text
-https://recurdream.com
+https://api.recurdream.com
 ```
 
 ## 配置步骤
@@ -27,6 +33,16 @@ https://recurdream.com
 4. 填写 API Key 和 Base URL。
 5. 填写或刷新模型列表。
 6. 新建聊天，发送一句测试消息。
+
+## 示例配置
+
+如果 Tavo 支持以 JSON 或高级参数方式保存服务配置，可以参考下面的字段含义：
+
+<<< @/snippets/clients/tavo-config.json
+
+如果你想先验证 API Key 是否可用，可以在终端请求模型列表：
+
+<<< @/snippets/clients/tavo-models.sh
 
 ## 模型怎么选
 
@@ -47,7 +63,7 @@ gemini-2.5-pro
 
 ### Tavo 提示接口错误
 
-先检查 Base URL。若填写 `https://recurdream.com/v1` 报 404，改成 `https://recurdream.com`；反过来也一样。
+先检查 Base URL。若填写 `https://api.recurdream.com/v1` 报 404，改成 `https://api.recurdream.com`；反过来也一样。
 
 ### Tavo 刷不出模型
 
